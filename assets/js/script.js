@@ -9,13 +9,32 @@ const apiKey = '022bba9572364968227b2b2289462619';
 
 // func to fetch current weather 
 function fetchCurrentWeather(city) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=022bba9572364968227b2b2289462619`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=022bba9572364968227b2b2289462619&units=metric`;
 
     // fetch API to make a GET request 
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
             // current weather displayed here 
+            const cityNameElement = document.getElementById('city-name');
+            cityNameElement.textContent = data.name;
+
+                             // to get weather icon
+            const weatherIconElement = document.getElementById('weather-icon');
+            const iconCode = data.weather[0].icon; // Icon code from API response
+            const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
+            weatherIconElement.src = iconUrl;
+
+            const temperatureElement = document.getElementById('temperature');
+            temperatureElement.textContent = `${data.main.temp}°C`;
+
+            const humidityElement = document.getElementById('humidity');
+            humidityElement.textContent = `${data.main.humidity}%`;
+
+            const windSpeedElement = document.getElementById('wind-speed');
+            windSpeedElement.textContent = `${data.wind.speed} m/s`;
+
+            addToSearchHistory(city);
             console.log(data);
         })
         .catch(error => console.error('Error fetching current weather:', error));
@@ -23,7 +42,7 @@ function fetchCurrentWeather(city) {
 
 // func to fetch 5-day weather forecast 
 function fetchForecast(city) {
-    const apiUrl = `https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid=022bba9572364968227b2b2289462619`;
+    const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=022bba9572364968227b2b2289462619&units=metric`;
 
     // fetch API to make a GET request
     fetch(apiUrl)
