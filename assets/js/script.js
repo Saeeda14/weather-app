@@ -16,21 +16,33 @@ function fetchCurrentWeather(city) {
         .then(response => response.json())
         .then(data => {
             // current weather displayed here 
+
+            // display city name
             const cityNameElement = document.getElementById('city-name');
             cityNameElement.textContent = data.name;
 
-                             // to get weather icon
+            // display the current date 
+            const currentDateElement = document.getElementById('current-date');
+            const currentDate = new Date(); 
+            const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+            const formattedDate = currentDate.toLocaleDateString(undefined, options);
+            currentDateElement.textContent = formattedDate;
+
+            // to get weather icon
             const weatherIconElement = document.getElementById('weather-icon');
             const iconCode = data.weather[0].icon; // Icon code from API response
             const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
             weatherIconElement.src = iconUrl;
 
+            // display temp
             const temperatureElement = document.getElementById('temperature');
             temperatureElement.textContent = `${data.main.temp}°C`;
 
+            // display humidity 
             const humidityElement = document.getElementById('humidity');
             humidityElement.textContent = `${data.main.humidity}%`;
 
+            // display wind-speed
             const windSpeedElement = document.getElementById('wind-speed');
             windSpeedElement.textContent = `${data.wind.speed} m/s`;
 
