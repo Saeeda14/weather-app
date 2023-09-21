@@ -1,41 +1,92 @@
-/* Add your CSS styles here */
-body {
-    font-family: Arial, sans-serif;
+body, h1, h2, p, ul {
     margin: 0;
     padding: 0;
-    background-color: #f0f0f0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
 }
 
 header {
-    background-color: #333;
+    background-color: #3498db;
     color: #fff;
+    padding: 20px;
     text-align: center;
+}
+
+main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#search-form {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+#search-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+#search-form input[type="text"] {
+    width: 100%;
     padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
 }
 
-h1 {
-    margin: 0;
-}
-
-form {
-    margin-top: 10px;
-}
-
-input[type="text"] {
-    padding: 5px;
-    width: 200px;
-}
-
-button {
-    padding: 5px 10px;
-    background-color: #007BFF;
+#search-form button {
+    background-color: #3498db;
     color: #fff;
     border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
 }
 
-button:hover {
-    background-color: #0056b3;
+#current-weather, #forecast {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 5px;
+    margin-bottom: 20px;
 }
 
-/* Add more CSS styles for weather and search history sections */
+#current-weather h2, #forecast h2 {
+    margin-bottom: 10px;
+}
+
+#weather-icon {
+    max-width: 100px;
+    display: block;
+    margin: 0 auto;
+}
+
+.forecast-card {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    margin: 10px;
+    display: inline-block;
+    width: calc(20% - 20px);
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .forecast-card {
+        width: calc(50% - 20px);
+    }
+}
+
+@media (max-width: 576px) {
+    .forecast-card {
+        width: 100%;
+    }
+}
