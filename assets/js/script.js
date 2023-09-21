@@ -60,39 +60,7 @@ function fetchForecast(city) {
     fetch(apiUrl)
         .then(response => response.json())
         .then(data => {
-            const forecastList = data.list;
-
-            // Clear the existing forecast data
-            const forecastContainer = document.getElementById('forecast-container');
-            forecastContainer.innerHTML = '';
-
-            // Iterate through the forecast entries and display the data for each day
-            forecastList.forEach(entry => {
-                const dateTime = new Date(entry.dt * 1000); 
-                const date = dateTime.toLocaleDateString(undefined, { weekday: 'short' });
-                const iconCode = entry.weather[0].icon;
-                const iconUrl = `https://openweathermap.org/img/w/${iconCode}.png`;
-                const temperature = `${entry.main.temp}°C`;
-                const windSpeed = `${entry.wind.speed} m/s`;
-                const humidity = `${entry.main.humidity}%`;
-
-                // Create a card element for each forecast day
-                const card = document.createElement('div');
-                card.classList.add('forecast-card');
-                card.innerHTML = `
-                    <p>Date: ${date}</p>
-                    <img src="${iconUrl}" alt="Weather Icon">
-                    <p>Temperature: ${temperature}</p>
-                    <p>Wind Speed: ${windSpeed}</p>
-                    <p>Humidity: ${humidity}</p>
-                `;
-
-                // Append the card to the forecast container
-                forecastContainer.appendChild(card);
-            });
-
-            // Save city to search history
-            addToSearchHistory(city);
+            // 5-day forecast displayed here 
             console.log(data);
         })
         .catch(error => console.error('Error fetching forecast:', error));
